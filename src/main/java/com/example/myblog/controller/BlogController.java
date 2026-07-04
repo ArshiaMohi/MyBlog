@@ -31,4 +31,14 @@ public class BlogController {
     public BlogResponse findById(@PathVariable Long id){
         return blogService.findById(id);
     }
+
+    @PutMapping("/{id}")
+    public BlogResponse updateBlog(@PathVariable Long id, @Valid @RequestBody BlogRequest request){
+        return blogService.updateBlog(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    public List<BlogResponse> deleteBlog(@PathVariable Long id){
+        return blogService.deleteBlog(id);
+    }
 }
