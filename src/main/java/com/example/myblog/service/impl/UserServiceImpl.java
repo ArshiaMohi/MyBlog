@@ -4,7 +4,6 @@ import com.example.myblog.dto.LoginRequest;
 import com.example.myblog.dto.RegisterRequest;
 import com.example.myblog.dto.UserResponse;
 import com.example.myblog.entity.User;
-import com.example.myblog.entity.enums.Role;
 import com.example.myblog.repository.UserRepository;
 import com.example.myblog.service.UserService;
 import org.springframework.stereotype.Service;
@@ -21,23 +20,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse register(RegisterRequest request) {
         User existingUser = userRepository.findByEmail(request.getEmail());
-        if (existingUser != null){
+        if (existingUser != null) {
             throw new RuntimeException("Email already exists.");
         }
-        User user = new User(
-                request.getName(),
-                request.getEmail(),
-                request.getPassword(),
-                Role.USER
-        );
+        User user = new User().convert(request);
         User savedUser = userRepository.save(user);
 
-        UserResponse response = new UserResponse(
-                savedUser.getId(),
-                savedUser.getName(),
-                savedUser.getEmail(),
-                savedUser.getRole()
-        );
+        UserResponse response = new UserResponse().convert(savedUser);
 
         return response;
 
@@ -46,19 +35,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse login(LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail());
-        if (user == null){
+        if (user == null) {
             throw new RuntimeException("User not found");
         }
-        if (!user.getPassword().equals(request.getPassword())){
+        if (!user.getPassword().equals(request.getPassword())) {
             throw new RuntimeException("Password is wrong");
         }
 
-        UserResponse response = new UserResponse(
-                user.getId(),
-                user.getName(),
-                user.getEmail(),
-                user.getRole()
-        );
+        UserResponse response = new UserResponse().convert(user);
 
         return response;
     }

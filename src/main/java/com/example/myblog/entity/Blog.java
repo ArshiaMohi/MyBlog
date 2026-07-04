@@ -1,5 +1,6 @@
 package com.example.myblog.entity;
 
+import com.example.myblog.dto.BlogRequest;
 import com.example.myblog.entity.enums.BlogStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -17,8 +18,7 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private String description;
-    private String image;
+    private String content;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     @Enumerated(EnumType.STRING)
@@ -28,4 +28,13 @@ public class Blog {
     private User user;
     @OneToMany(mappedBy = "blog")
     private List<Comment> comments;
+
+    public Blog convert(BlogRequest request){
+        Blog blog = new Blog();
+        blog.setTitle(request.getTitle());
+        blog.setContent(request.getContent());
+        blog.setStatus(BlogStatus.PENDING);
+        blog.setCreatedAt(LocalDateTime.now());
+        return blog;
+    }
 }

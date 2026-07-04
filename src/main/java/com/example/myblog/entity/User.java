@@ -1,5 +1,6 @@
 package com.example.myblog.entity;
 
+import com.example.myblog.dto.RegisterRequest;
 import com.example.myblog.entity.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -27,11 +28,12 @@ public class User {
 
     public User() {
     }
-
-    public User(String name, String email, String password, Role role) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.role = role;
+    public User convert(RegisterRequest request){
+        User user = new User();
+        user.setName(request.getName());
+        user.setEmail(request.getEmail());
+        user.setPassword(request.getPassword());
+        user.setRole(Role.USER);
+        return user;
     }
 }
