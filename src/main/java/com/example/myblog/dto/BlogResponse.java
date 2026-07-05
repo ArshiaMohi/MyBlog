@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,6 +17,7 @@ public class BlogResponse {
     private LocalDateTime createdAt;
     private BlogStatus status;
     private String authorName;
+    private List<CommentResponse> comments;
 
     public BlogResponse convert(Blog blog){
         BlogResponse response = new BlogResponse();
@@ -25,6 +27,16 @@ public class BlogResponse {
         response.setCreatedAt(blog.getCreatedAt());
         response.setStatus(blog.getStatus());
         response.setAuthorName(blog.getUser().getName());
+
+        List<CommentResponse> responseList =
+                blog.getComments()
+                        .stream()
+                        .map(comment -> {
+                            return new CommentResponse().convert(comment);
+                        })
+                        .toList();
+        response.setComments(responseList);
+
         return response;
     }
 }

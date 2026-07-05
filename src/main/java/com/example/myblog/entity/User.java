@@ -33,7 +33,7 @@ public class User {
         user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
-        user.setRole(Role.USER);
+        user.setRole(request.getRole());
         return user;
     }
 }

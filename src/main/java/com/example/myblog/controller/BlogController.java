@@ -19,26 +19,27 @@ public class BlogController {
     }
 
     @PostMapping()
-    public BlogResponse create(@Valid @RequestBody BlogRequest request){
+    public BlogResponse create(@Valid @RequestBody BlogRequest request) {
         return blogService.create(request);
     }
 
     @GetMapping()
-    public List<BlogResponse> findAll(){
+    public List<BlogResponse> findAll() {
         return blogService.findAll();
     }
+
     @GetMapping("/{id}")
-    public BlogResponse findById(@PathVariable Long id){
+    public BlogResponse findById(@PathVariable Long id) {
         return blogService.findById(id);
     }
 
     @PutMapping("/{id}")
-    public BlogResponse updateBlog(@PathVariable Long id, @Valid @RequestBody BlogRequest request){
+    public BlogResponse updateBlog(@PathVariable Long id, @Valid @RequestBody BlogRequest request) {
         return blogService.updateBlog(id, request);
     }
 
     @DeleteMapping("/{id}")
-    public List<BlogResponse> deleteBlog(@PathVariable Long id){
+    public List<BlogResponse> deleteBlog(@PathVariable Long id) {
         return blogService.deleteBlog(id);
     }
 }

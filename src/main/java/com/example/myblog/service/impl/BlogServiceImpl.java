@@ -2,6 +2,7 @@ package com.example.myblog.service.impl;
 
 import com.example.myblog.dto.BlogRequest;
 import com.example.myblog.dto.BlogResponse;
+import com.example.myblog.dto.CommentResponse;
 import com.example.myblog.dto.UserResponse;
 import com.example.myblog.entity.Blog;
 import com.example.myblog.entity.User;
@@ -49,6 +50,7 @@ public class BlogServiceImpl implements BlogService {
         if (blog == null){
             throw new RuntimeException("Blog not found");
         }
+
         return new BlogResponse().convert(blog);
     }
 
