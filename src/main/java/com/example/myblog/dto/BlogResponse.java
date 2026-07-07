@@ -1,7 +1,6 @@
 package com.example.myblog.dto;
 
 import com.example.myblog.entity.Blog;
-import com.example.myblog.entity.enums.BlogStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +14,6 @@ public class BlogResponse {
     private String title;
     private String content;
     private LocalDateTime createdAt;
-    private BlogStatus status;
     private String authorName;
     private List<CommentResponse> comments;
 
@@ -25,17 +23,19 @@ public class BlogResponse {
         response.setTitle(blog.getTitle());
         response.setContent(blog.getContent());
         response.setCreatedAt(blog.getCreatedAt());
-        response.setStatus(blog.getStatus());
         response.setAuthorName(blog.getUser().getName());
-
-        List<CommentResponse> responseList =
-                blog.getComments()
-                        .stream()
-                        .map(comment -> {
-                            return new CommentResponse().convert(comment);
-                        })
-                        .toList();
-        response.setComments(responseList);
+        try {
+            List<CommentResponse> responseList =
+                    blog.getComments()
+                            .stream()
+                            .map(comment -> {
+                                return new CommentResponse().convert(comment);
+                            })
+                            .toList();
+            response.setComments(responseList);
+        }catch (Exception e){
+            response.setComments(null);
+        }
 
         return response;
     }

@@ -1,7 +1,6 @@
 package com.example.myblog.entity;
 
 import com.example.myblog.dto.BlogRequest;
-import com.example.myblog.entity.enums.BlogStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,8 +24,6 @@ public class Blog {
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    @Enumerated(EnumType.STRING)
-    private BlogStatus status;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -37,7 +34,6 @@ public class Blog {
         Blog blog = new Blog();
         blog.setTitle(request.getTitle());
         blog.setContent(request.getContent());
-        blog.setStatus(BlogStatus.PENDING);
         return blog;
     }
 }

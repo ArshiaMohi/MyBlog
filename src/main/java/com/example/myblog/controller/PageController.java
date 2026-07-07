@@ -1,8 +1,10 @@
 package com.example.myblog.controller;
 
+import com.example.myblog.dto.BlogRequest;
 import com.example.myblog.dto.LoginRequest;
 import com.example.myblog.dto.RegisterRequest;
 import com.example.myblog.entity.enums.Role;
+import com.example.myblog.service.BlogService;
 import com.example.myblog.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PageController {
 
     private final UserService userService;
+    private final BlogService blogService;
 
-    public PageController(UserService userService) {
+    public PageController(UserService userService, BlogService blogService) {
         this.userService = userService;
+        this.blogService = blogService;
     }
 
     @GetMapping
@@ -65,6 +69,28 @@ public class PageController {
             return "register";
         }
         return "home";
+    }
+
+    @GetMapping("/createBlog")
+    public String createBlog(){
+        return "createBlog";
+    }
+    @PostMapping("/blogs/createBlog")
+    public String createBlogAccept(
+            @RequestParam String title,
+            @RequestParam String content,
+            @RequestParam Long userId
+    ){
+        BlogRequest request = new BlogRequest();
+        request.setTitle(title);
+        request.setContent(content);
+        request.setUserId(userId);
+        try {
+            blogService.create(request);
+        }catch (Exception e){
+            return "createBlog";
+        }
+        return "blogs";
     }
 
 
