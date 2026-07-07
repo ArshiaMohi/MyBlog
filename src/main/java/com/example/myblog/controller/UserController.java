@@ -24,8 +24,8 @@ public class UserController {
         return userService.register(request);
     }
 
-    @PostMapping("/login")
-    public UserResponse login(@Valid @RequestBody LoginRequest request) {
-        return userService.login(request);
-    }
+//    @PostMapping("/login")
+//    public UserResponse login(@Valid @RequestBody LoginRequest request) {
+//        return userService.login(request);
+//    }
 }

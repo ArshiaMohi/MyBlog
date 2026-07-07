@@ -5,6 +5,8 @@ import com.example.myblog.entity.enums.BlogStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,7 +21,9 @@ public class Blog {
     private Long id;
     private String title;
     private String content;
+    @CreationTimestamp
     private LocalDateTime createdAt;
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
     @Enumerated(EnumType.STRING)
     private BlogStatus status;
@@ -34,7 +38,6 @@ public class Blog {
         blog.setTitle(request.getTitle());
         blog.setContent(request.getContent());
         blog.setStatus(BlogStatus.PENDING);
-        blog.setCreatedAt(LocalDateTime.now());
         return blog;
     }
 }

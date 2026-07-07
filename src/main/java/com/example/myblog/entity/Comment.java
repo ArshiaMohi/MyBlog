@@ -5,6 +5,7 @@ import com.example.myblog.entity.enums.CommentStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -17,6 +18,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String text;
+    @CreationTimestamp
     private LocalDateTime createdAt;
     private Long idOfBlog;
     @Enumerated(EnumType.STRING)
@@ -31,7 +33,6 @@ public class Comment {
     public Comment convert(CommentRequest request){
         Comment comment = new Comment();
         comment.setText(request.getText());
-        comment.setCreatedAt(LocalDateTime.now());
         comment.setStatus(CommentStatus.PENDING);
         comment.setIdOfBlog(request.getBlogId());
         return comment;
