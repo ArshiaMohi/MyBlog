@@ -19,10 +19,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/register")
-    public UserResponse register(@Valid @RequestBody RegisterRequest request) {
-        return userService.register(request);
-    }
+//    @PostMapping("/register")
+//    public UserResponse register(@Valid @RequestBody RegisterRequest request) {
+//        return userService.register(request);
+//    }
 
 //    @PostMapping("/login")
 //    public UserResponse login(@Valid @RequestBody LoginRequest request) {
