@@ -34,6 +34,11 @@ public class PageController {
         return "login";
     }
 
+    @GetMapping("/createBlog")
+    public String createBlog(){
+        return "createBlog";
+    }
+
     @PostMapping("users/login")
     public String loginAccept(@RequestParam String email, @RequestParam String password){
         LoginRequest request = new LoginRequest();
@@ -76,22 +81,6 @@ public class PageController {
     public String create(BlogRequest request) {
          blogService.create(request);
          return "home";
-    }
-    @PostMapping("/blogs/createBlog")
-    public String createBlogAccept(
-            @RequestParam String title,
-            @RequestParam String content,
-            @RequestParam Long userId
-    ){
-        BlogRequest request = new BlogRequest();
-        request.setTitle(title);
-        request.setContent(content);
-        try {
-            blogService.create(request);
-        }catch (Exception e){
-            return "createBlog";
-        }
-        return "blogs";
     }
 
     @GetMapping("/showBlogs")
