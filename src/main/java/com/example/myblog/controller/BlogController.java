@@ -23,11 +23,6 @@ public class BlogController {
         return blogService.findById(id);
     }
 
-    @PostMapping("/create")
-    public BlogResponse create(@Valid @RequestBody BlogRequest request) {
-        return blogService.create(request);
-    }
-
     @GetMapping()
     public List<BlogResponse> findAll() {
         return blogService.findAll();

@@ -1,6 +1,7 @@
 package com.example.myblog.controller;
 
 import com.example.myblog.dto.BlogRequest;
+import com.example.myblog.dto.BlogResponse;
 import com.example.myblog.dto.LoginRequest;
 import com.example.myblog.dto.RegisterRequest;
 import com.example.myblog.entity.enums.Role;
@@ -71,9 +72,10 @@ public class PageController {
         return "home";
     }
 
-    @GetMapping("/createBlog")
-    public String createBlog(){
-        return "createBlog";
+    @PostMapping("/blogs/create")
+    public String create(BlogRequest request) {
+         blogService.create(request);
+         return "home";
     }
     @PostMapping("/blogs/createBlog")
     public String createBlogAccept(
@@ -84,7 +86,6 @@ public class PageController {
         BlogRequest request = new BlogRequest();
         request.setTitle(title);
         request.setContent(content);
-        request.setUserId(userId);
         try {
             blogService.create(request);
         }catch (Exception e){

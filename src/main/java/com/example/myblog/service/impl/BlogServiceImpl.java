@@ -26,10 +26,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public BlogResponse create(BlogRequest request) {
-        User user = userRepository.findUserById(request.getUserId());
-        if (user == null) {
-            throw new RuntimeException("User not found");
-        }
+
         Blog blog = new Blog().convert(request);
         return new BlogResponse().convert(blogRepository.save(blog));
     }
