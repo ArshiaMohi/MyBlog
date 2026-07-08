@@ -1,10 +1,465 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>مقالات</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Vazirmatn", sans-serif;
+        }
+
+        body {
+
+            background: #f4f7ff;
+
+        }
+
+        header {
+
+            background: white;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+
+            padding: 20px 8%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+        .logo {
+
+            font-size: 30px;
+
+            font-weight: 900;
+
+            color: #2450ff;
+
+        }
+
+        .menu {
+
+            display: flex;
+
+            gap: 30px;
+
+        }
+
+        .menu a {
+
+            text-decoration: none;
+
+            color: #444;
+
+            font-weight: bold;
+
+            transition: .3s;
+
+        }
+
+        .menu a:hover {
+
+            color: #2450ff;
+
+        }
+
+        .container {
+
+            width: 90%;
+
+            margin: 60px auto;
+
+        }
+
+        .title {
+
+            text-align: center;
+
+            font-size: 40px;
+
+            font-weight: 900;
+
+            color: #2450ff;
+
+            margin-bottom: 15px;
+
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #666;
+
+            margin-bottom: 60px;
+
+        }
+
+        .blogs {
+
+            display: grid;
+
+            grid-template-columns:repeat(4, 1fr);
+
+            gap: 30px;
+
+        }
+
+        .card {
+
+            background: white;
+
+            border-radius: 22px;
+
+            box-shadow: 0 15px 35px rgba(0, 0, 0, .08);
+
+            overflow: hidden;
+
+            transition: .35s;
+
+        }
+
+        .card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow: 0 20px 40px rgba(36, 80, 255, .15);
+
+        }
+
+        .image {
+
+            height: 180px;
+
+            background: linear-gradient(135deg, #2450ff, #5f88ff);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-size: 70px;
+
+            color: white;
+
+        }
+
+        .content {
+
+            padding: 25px;
+
+            text-align: center;
+
+        }
+
+        .content h3 {
+
+            margin-bottom: 25px;
+
+            font-size: 22px;
+
+            color: #222;
+
+        }
+
+        .content button {
+
+            padding: 13px 25px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #2450ff;
+
+            color: white;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition: .3s;
+
+        }
+
+        .content button:hover {
+
+            background: #1737c7;
+
+        }
+
+        .author {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #777;
+        }
+
+        @media (max-width: 1100px) {
+
+            .blogs {
+
+                grid-template-columns:repeat(2, 1fr);
+
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .blogs {
+
+                grid-template-columns:1fr;
+
+            }
+
+            .menu {
+
+                display: none;
+
+            }
+
+        }
+
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:repeat(3, 1fr);
+
+            gap: 30px;
+
+        }
+
+        .card {
+
+            background: white;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .08);
+
+            transition: .35s;
+
+            cursor: pointer;
+
+        }
+
+        .card:hover {
+
+            transform: translateY(-12px);
+
+            box-shadow: 0 25px 55px rgba(36, 80, 255, .18);
+
+        }
+
+        .card-image {
+
+            height: 210px;
+
+            background: linear-gradient(135deg, #2450ff, #5f88ff);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-size: 70px;
+
+            color: white;
+
+        }
+
+        .card-body {
+
+            padding: 25px;
+
+        }
+
+        .card-body h3 {
+
+            margin-bottom: 15px;
+
+            font-size: 23px;
+
+            color: #222;
+
+        }
+
+        .card-body p {
+
+            color: #666;
+
+            line-height: 30px;
+
+            font-size: 15px;
+
+            margin-bottom: 25px;
+
+        }
+
+        .read-more {
+
+            display: inline-block;
+
+            padding: 12px 25px;
+
+            background: #2450ff;
+
+            color: white;
+
+            border-radius: 12px;
+
+            font-weight: bold;
+
+            transition: .3s;
+
+        }
+
+        .read-more:hover {
+
+            background: #1737c7;
+
+        }
+
+        footer {
+
+            margin-top: 80px;
+
+            padding: 30px;
+
+            background: #0d1b75;
+
+            color: white;
+
+            text-align: center;
+
+        }
+
+    </style>
+
 </head>
+
 <body>
 
+<header>
+
+    <div class="logo">
+
+        وبلاگینو
+
+    </div>
+
+    <div class="menu">
+
+        <a href="http://localhost:8080">خانه</a>
+
+        <a href="http://localhost:8080/blogs">مقالات</a>
+
+        <a href="http://localhost:8080/login">ورود</a>
+
+        <a href="http://localhost:8080/register">ثبت نام</a>
+
+    </div>
+
+</header>
+
+<div class="container">
+
+    <h1 class="title">
+
+        همه مقالات
+
+    </h1>
+
+    <p class="subtitle">
+
+        آخرین مقالات منتشر شده را مطالعه کنید.
+
+    </p>
+
+    <div class="cards" id="blogCart">
+
+    </div>
+
+    <footer>
+
+        تمامی حقوق برای وبلاگینو محفوظ است ❤️
+
+    </footer>
+
+</div>
+
+<script>
+
+    function loadBlogs() {
+        fetch("http://localhost:8080/blogs")
+            .then(res => res.json())
+            .then(res => {
+                for (let i = 0; i < res.length; i++) {
+                    convertJsonToCart(res[i]);
+                }
+            })
+    }
+
+    function convertJsonToCart(blog) {
+        let cart = `        <div class="card">
+
+            <div class="card-image">
+
+                📚
+
+            </div>
+
+            <div class="card-body">
+
+                <h3>
+
+                     ${blog.title}
+
+                </h3>
+
+                <p>
+
+                    ${blog.content}
+
+                </p>
+
+                <a href="http://localhost:8080/blog?id=${blog.id}" class="read-more">
+
+                    مطالعه مقاله
+
+                </a>
+
+            </div>
+
+        </div>`
+        document.getElementById("blogCart").innerHTML += cart;
+    }
+
+    loadBlogs();
+
+</script>
+
 </body>
+
 </html>

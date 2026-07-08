@@ -93,5 +93,15 @@ public class PageController {
         return "blogs";
     }
 
+    @GetMapping("/showBlogs")
+    public String allBlogs(){
+        return "blogs";
+    }
+
+    @GetMapping("/blog")
+    public String blogDetails(){
+        return "blogDetails";
+    }
+
 
 }

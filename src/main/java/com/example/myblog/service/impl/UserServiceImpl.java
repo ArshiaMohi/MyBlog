@@ -29,7 +29,6 @@ public class UserServiceImpl implements UserService {
         UserResponse response = new UserResponse().convert(savedUser);
 
         return response;
-
     }
 
     @Override

@@ -21,10 +21,6 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToMany(mappedBy = "user")
-    private List<Blog> blogs;
-    @OneToMany(mappedBy = "user")
-    private List<Comment> comments;
 
     public User() {
     }

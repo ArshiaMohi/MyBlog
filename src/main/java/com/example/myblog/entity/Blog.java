@@ -24,11 +24,6 @@ public class Blog {
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    @OneToMany(mappedBy = "blog")
-    private List<Comment> comments;
 
     public Blog convert(BlogRequest request){
         Blog blog = new Blog();

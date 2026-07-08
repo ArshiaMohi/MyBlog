@@ -20,21 +20,13 @@ public class Comment {
     private String text;
     @CreationTimestamp
     private LocalDateTime createdAt;
-    private Long idOfBlog;
     @Enumerated(EnumType.STRING)
     private CommentStatus status;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    @ManyToOne
-    @JoinColumn(name = "blog_id")
-    private Blog blog;
 
-    public Comment convert(CommentRequest request){
+    public Comment convert(CommentRequest request) {
         Comment comment = new Comment();
         comment.setText(request.getText());
         comment.setStatus(CommentStatus.PENDING);
-        comment.setIdOfBlog(request.getBlogId());
         return comment;
     }
 }

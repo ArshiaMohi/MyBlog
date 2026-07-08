@@ -31,7 +31,6 @@ public class BlogServiceImpl implements BlogService {
             throw new RuntimeException("User not found");
         }
         Blog blog = new Blog().convert(request);
-        blog.setUser(user);
         return new BlogResponse().convert(blogRepository.save(blog));
     }
 

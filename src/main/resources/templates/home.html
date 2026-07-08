@@ -614,7 +614,7 @@
 
         <a href="http://localhost:8080">خانه</a>
 
-        <a href="blogs.html">مقالات</a>
+        <a href="http://localhost:8080/showBlogs">مقالات</a>
 
         <a href="http://localhost:8080/login">ورود</a>
 
@@ -647,15 +647,21 @@
 
             <div class="buttons">
 
-                <a href="blogs.html" class="btn1">
+                <a href="http://localhost:8080/showBlogs" class="btn1">
 
                     شروع مطالعه
 
                 </a>
 
-                <a href="http://localhost:8080/register" class="btn2">
+                <a href="http://localhost:8080/register" class="btn1">
 
                     عضویت رایگان
+
+                </a>
+
+                <a href="http://localhost:8080/createBlog" class="btn1">
+
+                    ساختن بلاگ
 
                 </a>
 
@@ -690,103 +696,7 @@
 
     </p>
 
-    <div class="cards">
-
-        <div class="card">
-
-            <div class="card-image">
-
-                ☕
-
-            </div>
-
-            <div class="card-body">
-
-                <h3>
-
-                    آموزش جاوا از صفر
-
-                </h3>
-
-                <p>
-
-                    اگر میخواهید برنامه نویسی جاوا را از ابتدا یاد بگیرید، این مقاله بهترین نقطه شروع برای شماست.
-
-                </p>
-
-                <a href="blogs.html" class="read-more">
-
-                    مطالعه مقاله
-
-                </a>
-
-            </div>
-
-        </div>
-
-        <div class="card">
-
-            <div class="card-image">
-
-                🚀
-
-            </div>
-
-            <div class="card-body">
-
-                <h3>
-
-                    شروع Spring Boot
-
-                </h3>
-
-                <p>
-
-                    با Spring Boot میتوانید خیلی سریع API های حرفه‌ای و پروژه‌های واقعی توسعه دهید.
-
-                </p>
-
-                <a href="blogs.html" class="read-more">
-
-                    مطالعه مقاله
-
-                </a>
-
-            </div>
-
-        </div>
-
-        <div class="card">
-
-            <div class="card-image">
-
-                📚
-
-            </div>
-
-            <div class="card-body">
-
-                <h3>
-
-                    اصول طراحی API
-
-                </h3>
-
-                <p>
-
-                    در این مقاله با بهترین روش‌های طراحی REST API و استانداردهای آن آشنا می‌شوید.
-
-                </p>
-
-                <a href="blogs.html" class="read-more">
-
-                    مطالعه مقاله
-
-                </a>
-
-            </div>
-
-        </div>
+    <div class="cards" id="blogCart">
 
     </div>
 
@@ -852,16 +762,52 @@
 
 <script>
 
-    document.querySelectorAll(".card").forEach(card=>{
+    function loadBlogs() {
+        fetch("http://localhost:8080/blogs")
+            .then(res => res.json())
+            .then(res => {
+                for (let i = 0; i < res.length; i++) {
+                    convertJsonToCart(res[i]);
+                }
+            })
+    }
 
-        card.addEventListener("mouseenter",()=>{
+    function convertJsonToCart(blog) {
+        let cart = `        <div class="card">
 
-            card.style.transition=".35s";
+            <div class="card-image">
 
-        });
+                📚
 
-    });
+            </div>
 
+            <div class="card-body">
+
+                <h3>
+
+                     ${blog.title}
+
+                </h3>
+
+                <p>
+
+                    ${blog.content}
+
+                </p>
+
+                <a href="http://localhost:8080/blog?id=${blog.id}" class="read-more">
+
+                    مطالعه مقاله
+
+                </a>
+
+            </div>
+
+        </div>`
+        document.getElementById("blogCart").innerHTML += cart;
+    }
+
+    loadBlogs();
 </script>
 
 </body>
